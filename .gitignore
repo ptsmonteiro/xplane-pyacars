@@ -1,0 +1,5 @@
+pyacars/data
+*.pyc
+*.pkl
+.DS_Store
+
