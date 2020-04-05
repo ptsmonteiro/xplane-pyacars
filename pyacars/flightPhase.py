@@ -16,6 +16,10 @@ class FlightPhase:
 
     def __init__(self, aircraft):
         self.aircraft = aircraft
+        self.reset()
+
+    def reset(self):
+        Logger.log('reseting flight phase')
         self.phase = self.PHASE_RAMP
 
     def update(self):

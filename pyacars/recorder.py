@@ -46,6 +46,7 @@ class Recorder:
         if self.recording:
             if now < self.time:
                 Logger.log('flight was reset')
+                self.flight_phase.reset()
                 self.stop()
             if self.aircraft.isonground() and not self.aircraft.isenginerunning() and self.aircraft.isstopped():
                 self.stop()
