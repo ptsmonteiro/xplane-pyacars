@@ -46,6 +46,7 @@ class Recorder:
         if self.recording:
             if now < self.time:
                 Logger.log('flight was reset')
+                self.flight_phase.reset()
                 self.stop()
             if self.aircraft.isonground() and not self.aircraft.isenginerunning() and self.aircraft.isstopped():
                 self.stop()
@@ -98,10 +99,16 @@ class Recorder:
         sample = {}
 
         # Recorded flight parameters
-        sample['time'] = DataRef.get_f('sim/time/total_flight_time_sec')
+        sample['time_s'] = DataRef.get_f('sim/time/total_flight_time_sec')
         sample['altitude_ft'] = DataRef.get_f('sim/flightmodel/misc/h_ind')
         sample['latitude_deg'] = DataRef.get_f('sim/flightmodel/position/latitude')
         sample['longitude_deg'] = DataRef.get_f('sim/flightmodel/position/longitude')
+        sample['gear_force'] = DataRef.get_f("sim/flightmodel/forces/fnrml_gear")
+        sample['groundspeed_kt'] = DataRef.get_f("sim/flightmodel/position/groundspeed")
+        sample['height_ft'] = DataRef.get_f("sim/cockpit2/gauges/indicators/radio_altimeter_height_ft_pilot")
+        sample['ias_kt'] = DataRef.get_f("sim/flightmodel/position/indicated_airspeed")
+        sample['vertical_speed_fpm'] = DataRef.get_f("sim/flightmodel/position/vh_ind_fpm")
+
         self.flight_data.append(sample)
 
         if self.time - self.flush_time >= self.flush_interval_sec:
