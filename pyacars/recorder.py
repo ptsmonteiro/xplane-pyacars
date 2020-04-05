@@ -36,6 +36,12 @@ class Recorder:
         self.update_status(time)
         self.time = time
         self.flight_phase.update()
+
+        if self.flight_phase.phase == self.flight_phase.PHASE_LANDING:
+            self.sample_rate = 10
+        else:
+            self.sample_rate = 1
+
         if not self.recording:
             Logger.log("Not recording")
             return

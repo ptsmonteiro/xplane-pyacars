@@ -75,7 +75,7 @@ class FlightPhase:
         elif self.phase == self.PHASE_TAXI_IN:
             if self.aircraft.isonground() and not self.aircraft.isenginerunning() and self.aircraft.isstopped():
                 self.phase = self.PHASE_RAMP
-            if self.aircraft.ias() > 35 and self.aircraft.height() < 500:
+            if self.aircraft.ias() > 35 and self.aircraft.height() < 500 and self.aircraft.verticalspeed() > 150:
                 self.phase = self.PHASE_TAKEOFF
 
         if oldphase != self.phase:
