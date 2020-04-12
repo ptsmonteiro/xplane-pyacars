@@ -56,7 +56,7 @@ class DataRef():
     @classmethod
     def get_string(cls, name, limit = 256):
         a = cls.get_vb(name, limit)
-        return "".join(map(chr, a))
+        return "".join(a)
 
     @classmethod
     def set_vb(cls, name, value):

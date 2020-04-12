@@ -25,15 +25,6 @@ class FlightPhase:
     def update(self):
         oldphase = self.phase
 
-        Logger.log("Phase update: on ground: %d, eng running: %d, stopped :%d, vs: %d, height: %d, gs: %d" % (
-            self.aircraft.isonground(),
-            self.aircraft.isenginerunning(),
-            self.aircraft.isstopped(),
-            self.aircraft.verticalspeed(),
-            self.aircraft.height(),
-            self.aircraft.groundspeed()
-        ))
-
         if self.phase == self.PHASE_RAMP:
             if self.aircraft.isenginerunning() and not self.aircraft.isstopped():
                 self.phase = self.PHASE_TAXI_OUT
