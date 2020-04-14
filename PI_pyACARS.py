@@ -49,7 +49,9 @@ class PythonInterface:
     '''
     def XPluginStart(self):
         self.syspath = []
-        self.conf = Conf(XPLMGetSystemPath(self.syspath)[:-1])
+        path = XPLMGetSystemPath(self.syspath)[:-1]
+
+        self.conf = Conf(path)
         self.recorder = Recorder(self.conf)
 
         self.Name = "pyACARS - " + self.conf.__VERSION__
